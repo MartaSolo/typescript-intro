@@ -1,50 +1,28 @@
-// let greet = () => {
-//   console.log("hello world");
-// };
+// type alliases
 
-// greet = "Bob"; // Type 'string' is not assignable to type '() => void'
-
-// ------------------
-// let greet: Function;
-
-// greet = () => {
-//   console.log("hello you");
-// };
-
-// ------------------
-// optional parameter
-// const add = (a: number, b: number, c?: number | string) => {
-//   console.log(a + b);
-//   console.log(a + b + c);
-// };
-
-// add(5, 10); // 15   // NaN
-// add(5, 10, 2); // 15    //17
-
-// ------------------
-// default parameter
-// const add = (a: number, b: number, c: number = 8) => {
-//   console.log(a + b);
-//   console.log(a + b + c);
-// };
-
-// add(5, 10); // 15   // 23
-// add(5, 10, 2); // 15    //17
-
-// ------------------
-// return value
-// 1. inference
-// const minus = (a: number, b: number) => {
-//   return a - b;
-// };
-
-// let result = minus(10, 5);
-// result type : number
-
-// 2. defined explicitly
-const minus = (a: number, b: number): number => {
-  return a - b;
+const logDetails = (uid: string | number, item: string) => {
+  return `${item} has a uid of ${uid}`;
 };
 
-let result = minus(10, 5);
-console.log(result);
+const greet = (user: { name: string; uid: string | number }) => {
+  return `${user.name} says hello`;
+};
+
+// allias for type string or number
+type StringOrNum = string | number;
+
+const logDetails = (uid: StringOrNum, item: string) => {
+  return `${item} has a uid of ${uid}`;
+};
+
+const greet = (user: { name: string; uid: StringOrNum }) => {
+  return `${user.name} says hello`;
+};
+
+// -----------------------------
+type StringOrNum = string | number;
+type objectName = { name: string; uid: StringOrNum };
+
+const greet = (user: objectName) => {
+  return `${user.name} says hello`;
+};
