@@ -1,29 +1,4 @@
-// const anchor = document.querySelector("a");
-
-// console.log(anchor); // <a href="https://www.thenetninja.co.uk">The Net Ninja</a>
-// console.log(anchor.href); // Object is possibly 'null'.
-
-// how to deal with it
-// 1 way
-
-// if (anchor) {
-//   console.log(anchor.href); // https://www.thenetninja.co.uk/
-// }
-
-// 2 way
-// const anchor = document.querySelector("a")!;
-// console.log(anchor.href); // https://www.thenetninja.co.uk/
-
-// form
-
-// const form = document.querySelector("form")!;
-// const form = document.querySelector(".new-item-form")!;
-
 const form = document.querySelector(".new-item-form") as HTMLFormElement;
-// console.log(form);
-
-// console.log(form.children);
-// HTMLCollection(5) [div.field, div.field, div.field, div.field, button]
 
 // inputs
 const type = document.querySelector("#type") as HTMLSelectElement;
@@ -40,3 +15,35 @@ form.addEventListener("submit", (e: Event) => {
   console.log(type.value, tofrom.value, details.value, amount.value);
   console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
+
+// classes
+
+// class instance
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
+
+  constructor(c: string, d: string, a: number) {
+    this.client = c;
+    this.details = d;
+    this.amount = a;
+  }
+  format() {
+    return `${this.client} owes $${this.amount} for ${this.details}`;
+  }
+}
+
+// class object
+const invoice1 = new Invoice("Bob", "plumbing job", 300);
+const invoice2 = new Invoice("Kate", "cleaning job", 150);
+console.log(invoice1);
+console.log(invoice2);
+
+invoice1.client = "Garry";
+invoice2.amount = 500;
+
+let invoices: Invoice[] = [];
+invoices.push(invoice1);
+invoices.push(invoice2);
+console.log(invoices);

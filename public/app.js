@@ -1,22 +1,5 @@
 "use strict";
-// const anchor = document.querySelector("a");
-// console.log(anchor); // <a href="https://www.thenetninja.co.uk">The Net Ninja</a>
-// console.log(anchor.href); // Object is possibly 'null'.
-// how to deal with it
-// 1 way
-// if (anchor) {
-//   console.log(anchor.href); // https://www.thenetninja.co.uk/
-// }
-// 2 way
-// const anchor = document.querySelector("a")!;
-// console.log(anchor.href); // https://www.thenetninja.co.uk/
-// form
-// const form = document.querySelector("form")!;
-// const form = document.querySelector(".new-item-form")!;
 var form = document.querySelector(".new-item-form");
-// console.log(form);
-// console.log(form.children);
-// HTMLCollection(5) [div.field, div.field, div.field, div.field, button]
 // inputs
 var type = document.querySelector("#type");
 var tofrom = document.querySelector("#tofrom");
@@ -31,3 +14,27 @@ form.addEventListener("submit", function (e) {
     console.log(type.value, tofrom.value, details.value, amount.value);
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
+// classes
+// class instance
+var Invoice = /** @class */ (function () {
+    function Invoice(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    Invoice.prototype.format = function () {
+        return "".concat(this.client, " owes $").concat(this.amount, " for ").concat(this.details);
+    };
+    return Invoice;
+}());
+// class object
+var invoice1 = new Invoice("Bob", "plumbing job", 300);
+var invoice2 = new Invoice("Kate", "cleaning job", 150);
+console.log(invoice1);
+console.log(invoice2);
+invoice1.client = "Garry";
+invoice2.amount = 500;
+var invoices = [];
+invoices.push(invoice1);
+invoices.push(invoice2);
+console.log(invoices);
