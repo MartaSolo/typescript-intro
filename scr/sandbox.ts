@@ -1,28 +1,29 @@
-// type alliases
+// function signature
 
-const logDetails = (uid: string | number, item: string) => {
-  return `${item} has a uid of ${uid}`;
+// example 1
+
+let greet: (a: string, b: string) => void;
+
+greet = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
 };
 
-const greet = (user: { name: string; uid: string | number }) => {
-  return `${user.name} says hello`;
+// example 2
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (num1: number, num2: number, action: string) => {
+  if (action === "add") {
+    return num1 + num2;
+  } else {
+    return num1 - num2;
+  }
 };
 
-// allias for type string or number
-type StringOrNum = string | number;
+// example
 
-const logDetails = (uid: StringOrNum, item: string) => {
-  return `${item} has a uid of ${uid}`;
-};
+let logDetails: (obj: { name: string; age: number }) => void;
+type person = { name: string; age: number };
 
-const greet = (user: { name: string; uid: StringOrNum }) => {
-  return `${user.name} says hello`;
-};
-
-// -----------------------------
-type StringOrNum = string | number;
-type objectName = { name: string; uid: StringOrNum };
-
-const greet = (user: objectName) => {
-  return `${user.name} says hello`;
+logDetails = (ninja: person) => {
+  console.log(`${ninja.name} is ${ninja.age} years old`);
 };
