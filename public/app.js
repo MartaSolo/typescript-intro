@@ -21,3 +21,24 @@ form.addEventListener("submit", (e) => {
     }
     list.render(doc, type.value, "end");
 });
+// generics
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docOne = addUID({ name: "bob", age: 40 });
+console.log(docOne); // {name: 'bob', age: 40, uid: 10}
+console.log(docOne.name); // bob
+let docTwo = addUID({ age: 30 });
+// Argument of type '{ age: number; }' is not assignable to parameter of type '{ name: string; }'.
+console.log(docTwo);
+const docThree = {
+    uid: 1,
+    resourceName: "person",
+    data: "employer",
+};
+const docFour = {
+    uid: 1,
+    resourceName: "person",
+    data: { name: "employer", status: "active" },
+};
