@@ -20,6 +20,7 @@ form.addEventListener("submit", (e: Event) => {
     details.value,
     amount.valueAsNumber,
   ];
+
   if (type.value === "invoice") {
     doc = new Invoice(...values);
   } else {
