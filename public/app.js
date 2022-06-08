@@ -22,23 +22,68 @@ form.addEventListener("submit", (e) => {
     list.render(doc, type.value, "end");
 });
 // generics
-const addUID = (obj) => {
-    let uid = Math.floor(Math.random() * 100);
-    return Object.assign(Object.assign({}, obj), { uid });
+// const addUID = <T extends { name: string }>(obj: T) => {
+//   let uid = Math.floor(Math.random() * 100);
+//   return { ...obj, uid };
+// };
+// let docOne = addUID({ name: "bob", age: 40 });
+// console.log(docOne); // {name: 'bob', age: 40, uid: 10}
+// console.log(docOne.name); // bob
+// let docTwo = addUID({ age: 30 });
+// // Argument of type '{ age: number; }' is not assignable to parameter of type '{ name: string; }'.
+// console.log(docTwo);
+// // generics with interfaces
+// interface Resource<T> {
+//   uid: number;
+//   resourceName: string;
+//   data: T;
+// }
+// const docThree: Resource<string> = {
+//   uid: 1,
+//   resourceName: "person",
+//   data: "employer",
+// };
+// const docFour: Resource<object> = {
+//   uid: 1,
+//   resourceName: "person",
+//   data: { name: "employer", status: "active" },
+// };
+// enums
+// interface Resource<T> {
+//   uid: number;
+//   resourceType: number;
+//   data: T;
+// }
+// const docOne: Resource<object> = {
+//   uid: 1,
+//   resourceType: 3,
+//   data: { title: "name of the wind" },
+// };
+// const docTwo: Resource<object> = {
+//   uid: 10,
+//   resourceType: 4,
+//   data: { name: "marta" },
+// };
+// -------------
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+const docOne = {
+    uid: 1,
+    resourceType: ResourceType.BOOK,
+    data: { title: "name of the wind" },
 };
-let docOne = addUID({ name: "bob", age: 40 });
-console.log(docOne); // {name: 'bob', age: 40, uid: 10}
-console.log(docOne.name); // bob
-let docTwo = addUID({ age: 30 });
-// Argument of type '{ age: number; }' is not assignable to parameter of type '{ name: string; }'.
+console.log(docOne);
+// {uid: 1, resourceType: 0, data: {…}}
+const docTwo = {
+    uid: 10,
+    resourceType: ResourceType.PERSON,
+    data: { name: "marta" },
+};
 console.log(docTwo);
-const docThree = {
-    uid: 1,
-    resourceName: "person",
-    data: "employer",
-};
-const docFour = {
-    uid: 1,
-    resourceName: "person",
-    data: { name: "employer", status: "active" },
-};
+// {uid: 10, resourceType: 4, data: {…}}
